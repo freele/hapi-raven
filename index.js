@@ -24,7 +24,10 @@ exports.register = function (server, options, next) {
         id: request.id,
         remoteAddress: request.info.remoteAddress
       },
-      tags: options.tags
+      tags: options.tags,
+      user: {
+        id: (request.auth && request.auth.credentials) ? request.auth.credentials.id : 'unauthorized'
+      }
     })
   })
 
